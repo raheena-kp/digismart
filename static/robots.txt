@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://digismart-q8i8.onrender.com/sitemap.xml

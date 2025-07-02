@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_from_directory
 from flask_mail import Mail, Message
 app = Flask(__name__)
 app.config['MAIL_SERVER']= 'smtp.gmail.com'
@@ -20,4 +20,10 @@ def contact():
     msg = Message(subject='New Contact Form Submission', sender=app.config['MAIL_USERNAME'], recipients=['smart.dm.services@gmail.com'], body=f"Name: {name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}")
     mail.send(msg)
     return "Thank you for contacting us!"
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('', 'sitemap.xml')
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory('static', 'robots.txt')
 if __name__ == '__main__': app.run(debug=True)
