@@ -22,7 +22,10 @@ def contact():
     return "Thank you for contacting us!"
 @app.route('/sitemap.xml')
 def sitemap():
-    return send_from_directory('', 'sitemap.xml')
+    with open('sitemap.xml') as f:
+        sitemap_content = f.read()
+    return Response(sitemap_content, mimetype='application/xml')
+
 @app.route('/robots.txt')
 def robots_txt():
     return send_from_directory('static', 'robots.txt')
